@@ -1,0 +1,30 @@
+<h1>Componente de coche</h1>
+
+<div *ngIf="nombre">
+	Nombre del coche: {{nombre}}
+	<button (click)='onBack()'>Volver</button>
+</div>
+<div *ngFor="let coche of coches">
+	<h5>{{coche.nombre}}</h5>
+	<p>{{coche.caballaje}}</p>
+	<a [routerLink]="['/coches/', coche.nombre]">Check product</a>
+</div>
+
+
+
+<!--Asignamos el formulario a la variable formCoche-->
+<!--<form #formCoche="ngForm" (ngSubmit)="onSubmit()">
+	<p><label>Nombre</label>
+	<input type="text" name="nombre" #nombre="ngModel" [(ngModel)]="coche.nombre" required>
+	<span *ngIf="nombre.touched && !nombre.valid">El nombre no puede estar vacío</span>
+	</p>
+	<p><label>Caballaje</label>
+	<input type="text" name="caballaje" #caballaje="ngModel" [(ngModel)]="coche.caballaje" pattern="[0-9]+" required>
+	<span *ngIf="caballaje.touched && !caballaje.valid">El caballaje no es correcto</span>
+	</p>
+	<p><label>Color</label>
+	<input type="text" name="color" #color="ngModel" [(ngModel)]="coche.color" pattern="[a-zA-Z#]+" required>
+	<span *ngIf="color.touched && !color.valid">El nombre no puede estar vacío</span>
+	</p>
+	<input type="submit" value="Guardar">	
+</form>-->

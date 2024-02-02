@@ -1,0 +1,71 @@
+<p>{{title}}</p>
+<!--<ul *ngIf="trabajadorExterno; else trabajadoresInternos">
+    <li>{{empleadoExt.nombre}}</li>
+</ul>
+<ng-template #trabajadoresInternos>
+    <li>Lista de trabajadores internos</li>
+</ng-template> -->
+
+<ul>
+    @if (trabajadorExterno) {
+        <button (click)="cambiarExterno(false)">Mostrar internos</button>
+        <li>{{empleadoExt.nombre}}</li>
+    }@else {
+        <button (click)="cambiarExterno(true)">Mostrar externos</button>
+        <h2>Lista de trabajadores internos</h2>
+        @for (empleado of trabajadores; track empleado.id; let index = $index) {
+            <p>Empleado {{index+1}}</p>
+            <li>{{ empleado.nombre }}</li>
+            @if (empleado.contratado) {
+                <li>Trabajador contratado</li>
+            }@else{
+                <li>Trabajador NO contratado</li>
+            }
+          }
+       <!-- <li *ngFor = "let empleado of trabajadores">
+            <ul>
+                <li>{{empleado.nombre}}</li>
+                <li *ngIf="empleado.contratado">Trabajador contratado</li>
+                <li *ngIf="!empleado.contratado">Trabajador NO contratado</li>
+            </ul>
+        </li>  -->   
+    }
+</ul>
+
+
+<hr />
+<h3>Selector de colores</h3>
+<input type="text" [(ngModel)]="color_seleccionado" />
+<div [ngStyle]="{
+	'background':color_seleccionado,
+		'width':'200px',
+		'height':'200px',
+		'float':'right',
+		'margin-right':'70%'
+	}"></div>
+<div style="clear:both">
+
+<pre [ngClass]="{
+	backBlue: color_seleccionado=='blue',
+	backGreen: color_seleccionado=='green'}">
+	<strong>Color elegido:</strong>
+	{{color_seleccionado}}
+</pre>
+
+<hr />
+<h3>Colores ngSwitch</h3>
+<ul [ngSwitch]="color" >
+	<li *ngSwitchCase="'red'" [ngStyle]="{
+		'background':color,
+		'color':'white',
+		'padding':'20px'
+		}">
+		Es de color rojo
+	</li>
+	<li *ngSwitchCase="'blue'" [ngStyle]="{
+		'background':color,
+		'color':'white',
+		'padding':'20px'
+		}">Es de color azul
+	</li>
+</ul>

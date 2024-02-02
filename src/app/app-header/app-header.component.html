@@ -1,0 +1,17 @@
+<div class="topnav">
+    <a class="active" href="#home">Inicio</a>
+    <a href="#noticias">Noticias</a>
+    <a href="#contact">Contacto</a>
+    <a href="#empleado">Empleado</a>
+    <a href="#coches">Coches</a>
+    <a [routerLink]="['empleado']">Empleado</a>
+ </div>
+ <br />
+ <div class="topnav">
+   <a class="active" href="#home" (click)="changeRoute($event, 'home')">Inicio 2</a>
+   <a href="#noticias" (click)="changeRoute($event, 'noticias')">Noticias 2</a>
+   <a href="#contact" [routerLink]="[{ outlets: { secondary: ['contact'] } }]">Contacto 2</a>
+   <a href="#empleado" [routerLink]="[{ outlets: { secondary: ['empleado'] } }]">Empleado 2</a>
+ </div>
+ <br />
+ 
