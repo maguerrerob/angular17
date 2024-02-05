@@ -1,0 +1,10 @@
+<h2>Listado de articulos</h2>
+@if(articulos$){
+    <ul>
+        @for(item of articulos$; track item.id){
+            <li>{{item.id}} - {{item.title}}</li>
+        }
+    </ul>
+}@else{
+    <span>Cargando listado...</span>
+}

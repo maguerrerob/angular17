@@ -11,7 +11,7 @@ export class EmpleadoComponent {
   public empleado:Empleado
 
   constructor(){
-    this.empleado = new Empleado("Manuel",22)
+    this.empleado = new Empleado("Manuel",22, "Mamporrero", true)
   }
   ngOnInit(){
     console.log(this.empleado)
