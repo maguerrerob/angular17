@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
 })
 
 export class HomeComponent {
-  mensaje: string = 'Hola Mundo!';
+  mensaje: string = 'Página principal';
 }

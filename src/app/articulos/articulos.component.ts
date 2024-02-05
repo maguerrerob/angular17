@@ -9,6 +9,8 @@ import { PeticionesService } from '../service/peticiones.service';
   providers: [PeticionesService, HttpClient]
 })
 export class ArticulosComponent {
+  mensaje_articulos: string = 'Página principal';
+  
   public articulos$!:any;   //$ indica que es un observable y ! elimina los null e indefinidos 
     constructor( private _peticionesService: PeticionesService,){}
 
