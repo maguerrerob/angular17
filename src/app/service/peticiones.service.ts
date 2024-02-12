@@ -8,15 +8,11 @@ import { Observable } from 'rxjs';
 
 export class PeticionesService {
 
-  public url:string;
+  private apiKey = '41de32836aa217222959710aa4bfa656';
 
-  constructor(
-    private _http: HttpClient
-  ){
-    this.url = "https://jsonplaceholder.typicode.com/posts";
-  }
+  constructor(private http: HttpClient) { }
 
-  getArticulos(){
-    return this._http.get<any>(this.url)
+  getPopularMovies() {
+    return this.http.get(`https://api.themoviedb.org/3/movie/popular?api_key=${this.apiKey}&language=en-US&page=1`);
   }
 }

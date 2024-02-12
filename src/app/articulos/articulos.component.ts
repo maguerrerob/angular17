@@ -9,23 +9,23 @@ import { PeticionesService } from '../service/peticiones.service';
   providers: [PeticionesService, HttpClient]
 })
 export class ArticulosComponent {
-  mensaje_articulos: string = 'Página principal';
+  // mensaje_articulos: string = 'Página principal';
   
-  public articulos$!:any;   //$ indica que es un observable y ! elimina los null e indefinidos 
-    constructor( private _peticionesService: PeticionesService,){}
+  // public articulos$!:any;   //$ indica que es un observable y ! elimina los null e indefinidos 
+  //   constructor( private _peticionesService: PeticionesService,){}
 
-    ngOnInit(){
-      console.log(this._peticionesService.getArticulos());
-		  this._peticionesService.getArticulos().subscribe({
-			  next: (result: any) => {
-          this.articulos$ = result;
-          if(!this.articulos$){
-            console.log("Error en el servidor");
-          }
-        },
-        error: (e: any) => {
-          var errorMessage = <any>Error;
-          console.log(errorMessage);
-        }});
-    }
+  //   ngOnInit(){
+  //     console.log(this._peticionesService.getArticulos());
+	// 	  this._peticionesService.getArticulos().subscribe({
+	// 		  next: (result: any) => {
+  //         this.articulos$ = result;
+  //         if(!this.articulos$){
+  //           console.log("Error en el servidor");
+  //         }
+  //       },
+  //       error: (e: any) => {
+  //         var errorMessage = <any>Error;
+  //         console.log(errorMessage);
+  //       }});
+  //   }
 }
