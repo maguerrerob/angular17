@@ -13,12 +13,14 @@ import { PeticionesService } from '../service/peticiones.service';
 export class HomeComponent implements OnInit {
 
   movies: any[] = [];
+  moviesTopRated: any[] = []
 
   constructor(private PeticionesService: PeticionesService) { }
 
   ngOnInit(): void {
     this.PeticionesService.getPopularMovies().subscribe((data: any) => {
       this.movies = data.results.slice(0, 3);
+      this.moviesTopRated = data.results
     });
   }
 
