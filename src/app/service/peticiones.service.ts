@@ -12,7 +12,11 @@ export class PeticionesService {
 
   constructor(private http: HttpClient) { }
 
-  getPopularMovies() {
-    return this.http.get(`https://api.themoviedb.org/3/movie/popular?api_key=${this.apiKey}&language=en-US&page=1`);
-  }
+    getPopularMovies() {
+      return this.http.get(`https://api.themoviedb.org/3/movie/popular?api_key=${this.apiKey}&language=en-US&page=1`);
+    }
+
+    getMoviesBuscador(contenido: string) {
+      return this.http.get('https://api.themoviedb.org/3/search/movie?query=${this.contenido}&api_key=${this.apiKey}&language=en-US&page=1')
+    }
 }

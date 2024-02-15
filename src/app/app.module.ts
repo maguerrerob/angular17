@@ -9,6 +9,7 @@ import { HomeComponent } from './home/home.component';
 import { ArticulosComponent } from './articulos/articulos.component';
 import { HeaderComponent } from './header/header.component';
 import { WatchlistComponent } from './watchlist/watchlist.component';
+import { BuscadorComponent } from './buscador/buscador.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { WatchlistComponent } from './watchlist/watchlist.component';
     ArticulosComponent,
     HeaderComponent,
     WatchlistComponent,
+    BuscadorComponent,
   ],
   imports: [
     BrowserModule,

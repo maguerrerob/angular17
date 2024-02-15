@@ -1,13 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
 import { PeticionesService } from '../service/peticiones.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
-  providers: [PeticionesService, HttpClient]
+  providers: [PeticionesService]
 })
 
 export class HomeComponent implements OnInit {
