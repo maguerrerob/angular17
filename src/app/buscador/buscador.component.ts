@@ -8,18 +8,16 @@ import { PeticionesService } from '../service/peticiones.service';
   providers: [PeticionesService]
 })
 export class BuscadorComponent {
+  searchQuery: string = '';
   movies: any[] = [];
 
-  constructor(private PeticionesService: PeticionesService) { }
+  constructor(private buscador: PeticionesService) { }
 
-  buscarPeliculas(cadena: string) {
-    this.PeticionesService.getMoviesBuscador(cadena)
-      .subscribe((data) => {
-        // Manejar la respuesta de la llamada a la función del servicio aquí
-        console.log(data);
-      }, (error) => {
-        console.error(error);
+  searchMovies() {
+    if (this.searchQuery.trim() != '') {
+      this.buscador.getMoviesBuscador(this.searchQuery).subscribe((response: any) => {
+        this.movies = response.results;
       });
+    }
   }
-  
 }
