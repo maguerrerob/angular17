@@ -12,6 +12,7 @@ export class HomeComponent implements OnInit {
 
   movies: any[] = [];
   moviesTopRated: any[] = []
+  searchQuery: string = '';
 
   constructor(private PeticionesService: PeticionesService) { }
 
@@ -19,6 +20,12 @@ export class HomeComponent implements OnInit {
     this.PeticionesService.getPopularMovies().subscribe((data: any) => {
       this.movies = data.results.slice(0, 3);
       this.moviesTopRated = data.results
+    });
+  }
+
+  searchDetails() {
+    this.PeticionesService.getMoviesBuscador(this.searchQuery).subscribe((response: any) => {
+      this.movies = response.results;
     });
   }
 

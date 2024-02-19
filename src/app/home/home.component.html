@@ -26,6 +26,7 @@
         <div class="card-body">
           <h5 class="card-title">{{ movieT.title }}</h5>
           <p class="card-text">{{ movieT.overview.slice(0, 200) + "..." }}</p>
+          <a routerLink="/detalles" [(ngModel)]="searchQuery" (click)="searchDetails()">Detalles</a>
         </div>
       </div>
     </div>

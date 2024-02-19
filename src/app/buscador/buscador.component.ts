@@ -14,10 +14,8 @@ export class BuscadorComponent {
   constructor(private buscador: PeticionesService) { }
 
   searchMovies() {
-    if (this.searchQuery.trim() != '') {
-      this.buscador.getMoviesBuscador(this.searchQuery).subscribe((response: any) => {
-        this.movies = response.results;
-      });
-    }
+    this.buscador.getMoviesBuscador(this.searchQuery).subscribe((response: any) => {
+      this.movies = response.results;
+    });
   }
 }
