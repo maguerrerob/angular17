@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { PeticionesService } from '../service/peticiones.service';
 
 @Component({
@@ -7,15 +7,29 @@ import { PeticionesService } from '../service/peticiones.service';
   styleUrl: './buscador.component.scss',
   providers: [PeticionesService]
 })
-export class BuscadorComponent {
-  searchQuery: string = '';
+export class BuscadorComponent implements OnInit {
+  searchQuery!: string;
   movies: any[] = [];
 
-  constructor(private buscador: PeticionesService) { }
+  constructor(private PeticionesService: PeticionesService) { }
 
-  searchMovies() {
-    this.buscador.getMoviesBuscador(this.searchQuery).subscribe((response: any) => {
-      this.movies = response.results;
+  ngOnInit(): void {
+    this.searchQuery = this.PeticionesService.searchQuery;
+    this.getMoviesBuscador(this.searchQuery)
+  }
+
+  ngDoCheck () {
+    if(this.searchQuery != this.PeticionesService.searchQuery){
+      this.searchQuery = this.PeticionesService.searchQuery;
+      this.getMoviesBuscador(this.searchQuery);
+    }
+  }
+
+  getMoviesBuscador(query: string): void {
+    this.PeticionesService.getMoviesBuscador(query).subscribe(data => {
+      this.movies = data.results;
+    }, error => {
+      console.error(error);
     });
   }
 }

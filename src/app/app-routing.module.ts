@@ -11,7 +11,7 @@ const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: "watchlist", component: WatchlistComponent },
   { path: "buscador", component: BuscadorComponent },
-  { path: "detalles", component: DetallesComponent },
+  { path: "detalles/:movie_id", component: DetallesComponent },
 ];
 
 @NgModule({

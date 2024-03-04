@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { PeticionesService } from '../service/peticiones.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-detalles',
@@ -7,15 +8,19 @@ import { PeticionesService } from '../service/peticiones.service';
   styleUrl: './detalles.component.scss',
   providers: [PeticionesService]
 })
-export class DetallesComponent {
-  searchQuery: string = '';
-  movie: any[] = [];
 
-  constructor(private PeticionesService: PeticionesService) { }
+export class DetallesComponent implements OnInit {
+  movie: any;
+
+  constructor(private PeticionesService: PeticionesService, private route: ActivatedRoute) { }
   
   ngOnInit(): void {
-    this.PeticionesService.getMoviesBuscador(this.searchQuery).subscribe((data: any) => {
-      this.movie = data.results;
-    });
+    this.route.params.subscribe(params => {
+      const movieId = params['movie_id']; 
+      
+      this.PeticionesService.getMovieId(movieId).subscribe((data: any) => {
+        this.movie = data.results;
+      })
+    })
   }
 }

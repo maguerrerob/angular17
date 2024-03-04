@@ -11,8 +11,7 @@ import { PeticionesService } from '../service/peticiones.service';
 export class HomeComponent implements OnInit {
 
   movies: any[] = [];
-  moviesTopRated: any[] = []
-  searchQuery: string = '';
+  moviesTopRated: any[] = [];
 
   constructor(private PeticionesService: PeticionesService) { }
 
@@ -23,11 +22,7 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  searchDetails() {
-    this.PeticionesService.getMoviesBuscador(this.searchQuery).subscribe((response: any) => {
-      this.movies = response.results;
-    });
-  }
+}
 
   // public articulos$!:any;
 
@@ -49,4 +44,3 @@ export class HomeComponent implements OnInit {
   //       //console.log(errorMessage);
   //     }});
   // }
-}

@@ -14,19 +14,26 @@
     </button>
 </div>
 
-<div class="container mt-5">
+<div class="row">
+  <div class="col-1"></div>
+  <div class="col-11">
+    <h1 class="mt-5">Películas Populares</h1>
+  </div>
+</div>
+
+<div class="container mt-4">
   <div class="row">
-    <div class="col-4" *ngFor="let movieT of moviesTopRated; let x = index">
+    <div class="col-3" *ngFor="let movieT of moviesTopRated; let x = index">
       <div class="card mb-4">
-        <img [src]="'https://image.tmdb.org/t/p/w780' + movieT.poster_path" class="col-3 card-img-top img-fluid">
+        <a routerLink="/detalles"><img [src]="'https://image.tmdb.org/t/p/w780' + movieT.poster_path" class="col-3 card-img-top img-fluid"></a>
         <span class="position-absolute top-0 start-100 translate-middle d-inline-block rounded-circle bg-success text-white p-1">
           {{ (movieT.vote_average * 10).toFixed(2) }}
           <span class="visually-hidden">unread messages</span>
         </span>
         <div class="card-body">
-          <h5 class="card-title">{{ movieT.title }}</h5>
-          <p class="card-text">{{ movieT.overview.slice(0, 200) + "..." }}</p>
-          <a routerLink="/detalles" [(ngModel)]="searchQuery" (click)="searchDetails()">Detalles</a>
+          <a [routerLink]="['/detalles/', movieT.id]" class="sin-subrayado"><h5 class="card-title ">{{ movieT.title }}</h5></a>
+          <p class="card-text">{{ movieT.release_date }}</p>
+          <!-- <a routerLink="/detalles" [(ngModel)]="searchQuery" (click)="searchDetails()">Detalles</a> -->
         </div>
       </div>
     </div>
