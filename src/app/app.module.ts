@@ -12,6 +12,7 @@ import { HeaderComponent } from './header/header.component';
 import { WatchlistComponent } from './watchlist/watchlist.component';
 import { BuscadorComponent } from './buscador/buscador.component';
 import { DetallesComponent } from './detalles/detalles.component';
+//import { PeticionesService } from './service/peticiones.service';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,7 @@ import { DetallesComponent } from './detalles/detalles.component';
     AppRoutingModule,
     HttpClientModule,
   ],
-  providers: [],
+  //providers: [PeticionesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

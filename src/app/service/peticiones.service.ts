@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 
 export class PeticionesService {
   private apiKey: string = '41de32836aa217222959710aa4bfa656';
-  searchQuery: string = '';
+  public searchQuery: string = '';
   public ID: any;
 
   constructor(private http: HttpClient) { }
