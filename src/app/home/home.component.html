@@ -14,6 +14,10 @@
     </button>
 </div>
 
+<div *ngFor="let dato of datosusuarioAPI; let x = index">
+  <p>{{ dato.username }}</p>
+</div>
+
 <div class="row">
   <div class="col-1"></div>
   <div class="col-11">
@@ -25,15 +29,16 @@
   <div class="row">
     <div class="col-3" *ngFor="let movieT of moviesTopRated; let x = index">
       <div class="card mb-4">
-        <a routerLink="/detalles"><img [src]="'https://image.tmdb.org/t/p/w780' + movieT.poster_path" class="col-3 card-img-top img-fluid"></a>
+        <a [routerLink]="['/detalles/', movieT.id]"><img [src]="'https://image.tmdb.org/t/p/w780' + movieT.poster_path" class="col-3 card-img-top img-fluid"></a>
         <span class="position-absolute top-0 start-100 translate-middle d-inline-block rounded-circle bg-success text-white p-1">
           {{ (movieT.vote_average * 10).toFixed(2) }}
           <span class="visually-hidden">unread messages</span>
         </span>
         <div class="card-body">
-          <a [routerLink]="['/detalles/', movieT.id]" class="sin-subrayado"><h5 class="card-title ">{{ movieT.title }}</h5></a>
+          <h5 class="card-title ">{{ movieT.title }}</h5>
           <p class="card-text">{{ movieT.release_date }}</p>
-          <!-- <a routerLink="/detalles" [(ngModel)]="searchQuery" (click)="searchDetails()">Detalles</a> -->
+          <a [routerLink]="['/detalles/', movieT.id]">Detalles</a>
+          <button type="button" (click)="addWatchlist(movieT.id)" class="btn btn-outline-primary mt-3" id="mybutton">Añadir a watchlist</button>
         </div>
       </div>
     </div>

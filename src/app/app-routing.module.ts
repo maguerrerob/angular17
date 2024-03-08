@@ -6,7 +6,6 @@ import { BuscadorComponent } from './buscador/buscador.component';
 import { DetallesComponent } from './detalles/detalles.component';
 
 
-
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: "watchlist", component: WatchlistComponent },

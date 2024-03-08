@@ -1,6 +1,27 @@
-<h2>Resultado búsqueda</h2>
-<ul>
-  <li *ngFor="let movie of movies">
-    {{ movie.title }}
-  </li>
-</ul>
+<form class="d-flex" (ngSubmit)="getMovie(searchQuery)">
+    <input class="form-control me-2" type="search" [(ngModel)]="searchQuery" name="searchTerm" placeholder="Buscar película" aria-label="Search">
+    <button class="btn btn-outline-success" type="submit">Search</button>
+</form>
+<div class="container mt-3">
+    <div class="row">
+        @if (movies){
+            @for (movie of movies; track movie.id){
+                <div class="col-3">
+                    <div class="card mb-4">
+                        <a [routerLink]="['/detalles/', movie.id]"><img [src]="'https://image.tmdb.org/t/p/w780' + movie.poster_path" class="col-3 card-img-top img-fluid"></a>
+                        <span class="position-absolute top-0 start-100 translate-middle d-inline-block rounded-circle bg-success text-white p-1">
+                            {{ (movie.vote_average * 10).toFixed(2) }}
+                            <span class="visually-hidden">unread messages</span>
+                        </span>
+                        <div class="card-body">
+                            <h5 class="card-title ">{{ movie.title }}</h5>
+                            <p class="card-text">{{ movie.release_date }}</p>
+                            <a [routerLink]="['/detalles/', movie.id]">Detalles</a>
+                            <button type="button" (click)="addWatchlist(movie.id)" class="btn btn-outline-primary mt-3" id="mybutton">Añadir a watchlist</button>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>

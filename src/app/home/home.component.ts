@@ -12,6 +12,7 @@ export class HomeComponent implements OnInit {
 
   movies: any[] = [];
   moviesTopRated: any[] = [];
+  datosusuarioAPI: any[] = [];
 
   constructor(private PeticionesService: PeticionesService) { }
 
@@ -20,8 +21,20 @@ export class HomeComponent implements OnInit {
       this.movies = data.results.slice(0, 3);
       this.moviesTopRated = data.results
     });
+    
+    this.PeticionesService.getAll().subscribe((data: any) => {
+      this.datosusuarioAPI = data
+    });
   }
 
+  addWatchlist(movieId:any){
+    this.PeticionesService.postWatchlist(movieId).subscribe(response => {
+      console.log("Respuesta del servidor: ", response);
+      window.location.reload();
+    }, error => {
+      console.error("Error en la solicitus POST", error)
+    }
+  )}
 }
 
   // public articulos$!:any;

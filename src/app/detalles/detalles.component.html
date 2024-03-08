@@ -1,14 +1,35 @@
 @if (movie) {
   <div class="container">
-    <div class="row">
-      <div class="col-4">
-        <img [src]="'https://image.tmdb.org/t/p/w500/' + movie.poster_path" class="img-fluid rounded" alt="">
-      </div>
-      <div class="col-8">
-        <h2>{{ movie.title }}</h2>
+    <div class="card mb-12" >
+      <div class="row">
+        <div class="col-4">
+          <img [src]="'https://image.tmdb.org/t/p/w780' + movie.poster_path" class="img-fluid card-img-top rounded" alt="">
+        </div>
+        <div class="col-8">
+          <h2 class="card-title mt-2">{{ movie.title }}</h2>
+          <p class="card-text mt-3">{{ movie.overview }}</p>
+          <p class="card-text">Fecha de salida: <span class="text-success">{{ movie.release_date }}</span></p>
+          @if (providersmovie.rent){
+            <h5>Alquiler</h5>
+             @for (prov of providersmovie.rent; track prov.id){
+              <div class="d-inline-block mx-2">
+                <img [src]="'https://image.tmdb.org/t/p/w1280' + prov.logo_path" class="img-thumbnail" alt="alquiler" id="providersRent">
+              </div>
+            } 
+          }
+          @if (providersmovie.buy){
+            <h5 class="mt-2">Venta</h5>
+            @for (prov of providersmovie.buy; track prov.id){
+              <div class="d-inline-block mx-2">
+                <img [src]="'https://image.tmdb.org/t/p/w1280' + prov.logo_path" class="img-thumbnail" alt="venta" id="providersRent">
+              </div>
+            }
+          }
+        </div>
+        <button type="button" (click)="addWatchlist(movie.id)" class="btn btn-outline-primary mt-3" id="mybutton">Añadir a watchlist</button>
       </div>
     </div>
   </div>
 }@else {
-  <p>No hay pelis</p>
+  <p>Error al buscar la película</p>
 }

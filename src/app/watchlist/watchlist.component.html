@@ -1,1 +1,29 @@
-<p>watchlist works!</p>
+<h3>My Watchlist</h3>
+<div class="row">
+    @for (movie of movies; track movie.id){
+        <div class="col-9 mx-auto mb-3" >
+            <div class="card mb-12">
+                <div class="row">
+                    <div class="col-2">
+                        <img [src]="'https://image.tmdb.org/t/p/w1280' + movie.poster_path" class="col-12 card-img-top img-fluid" alt="">
+                    </div>
+                    <div class="col-10">
+                        <h5 class="card-tittle mt-3">{{ movie.title }}</h5>
+                        <p class="card-text">{{ movie.overview }}</p>
+                        <p class="card-text">Fecha de salida: <span class="text-success">{{ movie.release_date }}</span></p>
+                        <div class="mb-1">
+                            <button class="btn btn-primary me-2" [routerLink]="['/detalles/', movie.id]">Detalles</button>
+                            <button class="btn btn-primary me-2" (click)="delWatchlist(movie.id)">Borrar</button>
+                            <!-- <router-link :to="{ name: 'Movie', params: { id: movie.id }}" class="btn btn-primary me-2">Detalles</router-link> -->
+                            <!-- <button type="button" @click="delWatchlist(movie.id)" class="btn btn-outline-primary" id="mybutton">Borrar</button><span></span> -->
+                        </div>
+                    </div>
+                </div>
+                <span class="position-absolute top-0 start-100 translate-middle d-inline-block rounded-circle bg-success text-white p-1">
+                    {{ (movie.vote_average).toFixed(2) }}
+                    <span class="visually-hidden">unread messages</span>
+                </span>
+            </div>
+        </div>
+    }
+</div>

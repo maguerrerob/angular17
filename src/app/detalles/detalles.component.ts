@@ -11,16 +11,29 @@ import { ActivatedRoute } from '@angular/router';
 
 export class DetallesComponent implements OnInit {
   movie: any;
+  id: any;
+  providersmovie: any;
 
-  constructor(private PeticionesService: PeticionesService, private route: ActivatedRoute) { }
+  constructor(private ServicePeticion: PeticionesService, private route: ActivatedRoute) { }
   
   ngOnInit(): void {
     this.route.params.subscribe(params => {
-      const movieId = params['movie_id']; 
-      
-      this.PeticionesService.getMovieId(movieId).subscribe((data: any) => {
-        this.movie = data.results;
+      const movieId = params['movie_id'];
+      this.id = params['movie_id']
+      this.ServicePeticion.getMovieId(movieId).subscribe((data: any) => {
+        this.movie = data;
+        this.providersmovie = data['watch/providers'].results.ES;
       })
     })
   }
+
+  addWatchlist(movieId:any){
+    this.ServicePeticion.postWatchlist(movieId).subscribe(response => {
+      console.log("Respuesta del servidor: ", response);
+      window.location.reload();
+    }, error => {
+      console.error("Error en la solicitus POST", error)
+    }
+  )}
+  
 }
