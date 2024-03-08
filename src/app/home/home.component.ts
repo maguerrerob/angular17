@@ -12,7 +12,7 @@ export class HomeComponent implements OnInit {
 
   movies: any[] = [];
   moviesTopRated: any[] = [];
-  datosusuarioAPI: any[] = [];
+  datosusuarioAPI: any;
 
   constructor(private PeticionesService: PeticionesService) { }
 
@@ -22,9 +22,9 @@ export class HomeComponent implements OnInit {
       this.moviesTopRated = data.results
     });
     
-    this.PeticionesService.getAll().subscribe((data: any) => {
-      this.datosusuarioAPI = data
-    });
+    // this.PeticionesService.getAll().subscribe((data: any) => {
+    //   this.datosusuarioAPI = data
+    // });
   }
 
   addWatchlist(movieId:any){

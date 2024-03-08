@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
-const baseUrl = "http://localhost:8080";
-// const token = "ba5GFv23oWUhNZ4TUtumlT0aeLgNeP";
-// const headers = {
-//   'Authorization': `Bearer ${token}`
-// }
+
+const token = "ba5GFv23oWUhNZ4TUtumlT0aeLgNeP";
+const headers = {
+  'Authorization': `Bearer ${token}`
+}
 
 @Injectable({
   providedIn: 'root'
@@ -14,9 +15,10 @@ const baseUrl = "http://localhost:8080";
 
 export class PeticionesService {
   private apiKey: string = '41de32836aa217222959710aa4bfa656';
-  public searchQuery: string = "";
+  public usuarioRegistrado: any;
   public ID: any;
   public bearerToken: string = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0MWRlMzI4MzZhYTIxNzIyMjk1OTcxMGFhNGJmYTY1NiIsInN1YiI6IjY1YTkxYmJjNTVjMWY0MDEyODg5ZWE1NCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.I7FRPNfYWFgq6giDmM43GaiYUaLSYyLM-6m7kJywMd0"
+  public baseUrl = "http://albertwok.pythonanywhere.com/api/v1/registrar/usuario";
 
   constructor(private http: HttpClient) { }
 
@@ -29,8 +31,8 @@ export class PeticionesService {
       return this.http.get(url);
     }
   
-    setcompartirsearchQuery(parametro: string) {
-      this.searchQuery = parametro;
+    setcompartirUsuarioRegistrado(parametro: any) {
+      this.usuarioRegistrado = parametro;
     }
 
     getMovieId(movie_id: any): Observable<any> {
@@ -38,9 +40,9 @@ export class PeticionesService {
       return this.http.get<any>(url)
     }
 
-    getAll(): Observable<any[]> {
-      return this.http.get<any[]>(`${baseUrl}/usuarios`)
-    }
+    // getAll(): Observable<any[]> {
+    //   return this.http.get<any[]>(`${baseUrl}/usuarios`)
+    // }
 
     postWatchlist(movie_id: any): Observable<any> {
       const url = `https://api.themoviedb.org/3/account/20931000/watchlist`;
@@ -80,5 +82,14 @@ export class PeticionesService {
         watchlist: false
       };
       return this.http.post<any>(url, body, { headers });
+    }
+
+    registrarUsuario(datosRegistro: any): Observable<any> {
+      return this.http.post<any>(this.baseUrl, datosRegistro)
+        .pipe(
+          catchError(error => {
+            throw error;
+          })
+        );
     }
 }

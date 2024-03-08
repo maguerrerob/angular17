@@ -1,0 +1,32 @@
+<div class="container">
+    <form class="custom-form" [formGroup]="miformulario" (ngSubmit)="registroUsuario()">
+        <h1>Registro de usuario</h1>
+        <div class="form-group">
+            <label for="nombre">Nombre de usuario</label>
+            <input type="text" id="nombre" name="nombre" formControlName="nombre">
+            <p *ngIf="miformulario.get('nombre')!.touched && miformulario.get('nombre')!.hasError('required')">El nombre es obligatorio y no puede tener más de 50 carácteres</p>
+        </div>
+        
+        <div>
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" formControlName="email">
+            <p *ngIf="miformulario.get('email')!.touched && miformulario.get('email')!.hasError('required')">El email es obligatorio</p>
+        </div>
+
+        <div>
+            <label for="password1">Password1</label>
+            <input type="password1" id="password1" name="password1" formControlName="password1">
+            <p *ngIf="miformulario.get('password1')!.touched && miformulario.get('password1')!.hasError('required')">La contraseña es obligatoria</p>
+        </div>
+
+        <div>
+            <label for="password2">password2</label>
+            <input type="password2" id="password2" name="password2" formControlName="password2">
+            <p *ngIf="miformulario.get('password2')!.touched && miformulario.get('password2')!.hasError('required')">La contraseña es obligatoria</p>
+            <p *ngIf="miformulario.get('password2')!.hasError('passwordMismatch')">Las contraseñas no coinciden</p>
+        </div>
+        <button type="submit" class="btn btn-primary" >
+            Registrarse
+        </button>
+    </form>
+</div>

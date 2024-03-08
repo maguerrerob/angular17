@@ -12,6 +12,8 @@ import { HeaderComponent } from './header/header.component';
 import { WatchlistComponent } from './watchlist/watchlist.component';
 import { BuscadorComponent } from './buscador/buscador.component';
 import { DetallesComponent } from './detalles/detalles.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { FormularioComponent } from './formulario/formulario.component';
 //import { PeticionesService } from './service/peticiones.service';
 
 @NgModule({
@@ -24,12 +26,14 @@ import { DetallesComponent } from './detalles/detalles.component';
     WatchlistComponent,
     BuscadorComponent,
     DetallesComponent,
+    FormularioComponent,
   ],
   imports: [
     FormsModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    ReactiveFormsModule
   ],
   //providers: [PeticionesService],
   bootstrap: [AppComponent]

@@ -14,8 +14,8 @@ export class HeaderComponent {
   public searchQuery: string = "";
   constructor(private router: Router, private peticionesService: PeticionesService) {}
 
-  compartirsearchQuery() {
-    this.peticionesService.setcompartirsearchQuery(this.searchQuery);
-    this.router.navigate(['/buscador']);
-  }
+  // compartirsearchQuery() {
+  //   this.peticionesService.setcompartirsearchQuery(this.searchQuery);
+  //   this.router.navigate(['/buscador']);
+  // }
 }

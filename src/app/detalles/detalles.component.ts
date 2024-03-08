@@ -19,7 +19,7 @@ export class DetallesComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       const movieId = params['movie_id'];
-      this.id = params['movie_id']
+      // this.id = params['movie_id']
       this.ServicePeticion.getMovieId(movieId).subscribe((data: any) => {
         this.movie = data;
         this.providersmovie = data['watch/providers'].results.ES;
